@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', oroll_views.IndexView.as_view(), name = 'root'),
     url(r'^oroll/', include('oroll.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
 ]
