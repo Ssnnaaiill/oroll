@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url, include
+from oroll import views as oroll_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', oroll_views.IndexView.as_view(), name = 'root'),
+    url(r'^oroll/', include('oroll.urls')),
 ]
