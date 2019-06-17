@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^$', oroll_views.IndexView.as_view(), name = 'root'),
     url(r'^oroll/', include('oroll.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/signup$', oroll_views.CreateUserView.as_view(), name = 'signup'),
+    url(r'^accounts/signup/done$', oroll_views.RegisteredView.as_view(), name = 'create_user_done'),
 ]
