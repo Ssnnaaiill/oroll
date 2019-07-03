@@ -19,10 +19,11 @@ from django.conf.urls import url, include
 from oroll import views as oroll_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', oroll_views.IndexView.as_view(), name = 'root'),
+    url(r'^$', login_required(oroll_views.IndexView.as_view()), name = 'root'),
     url(r'^oroll/', include('oroll.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/signup$', oroll_views.CreateUserView.as_view(), name = 'signup'),

@@ -1,0 +1,43 @@
+{% extends 'oroll/base.html' %}
+{% block content %}
+<h1>오늘의 시나리오, Oroll</h1>
+<p><a class="btn btn-primary" href="{% url 'oroll:upload' %}">업로드</a></p>
+
+{% if user_photo_list %}
+{% for photo in user_photo_list %}
+<div class="panel panel-default" align="center">
+	<div class="panel-heading"><h4>{{ photo.title }}</h4></div>
+	<p>작성자 : {{ photo.owner.username }}</p>
+	<div class="panel-body">
+		{% if photo.image.width > 800 %}
+		<p>
+		<img src='{{ photo.image.url }}' width='600'>
+		<br>
+		{% else %}
+		<p>
+		<img src='{{ photo.image.url }}'><br>
+		{% endif %}
+		{{ photo.comment }}
+		</p>
+	</div>
+</div>
+{% endfor %}
+{% else %}
+<h4>아직 등록된 시나리오가 없네요. 자신의 작품을 업로드해보세요!</h4>
+{% endif %}
+
+<!-- pagination nav -->
+{% if is_paginated %}
+<nav aria-label="...">
+	<ul class=pager>
+		{% if page_obj.has_previous %}
+		<li><a href="{% url 'oroll:index' %}?page={{ page_obj.previous_page_number }}">이전</a></li>
+		{% endif %}
+		<li> <a href="#">페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} </a></li>
+		{% if page_obj.has_next %}
+		<li><a href="{% url 'oroll:index' %}?page={{ page_obj.next_page_number }}">다음</a></li>
+		{% endif %}
+	</ul>
+</nav>
+{% endif %}
+{% endblock %}
