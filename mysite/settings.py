@@ -25,7 +25,7 @@ SECRET_KEY = 'aa1&)3z868n2slfoa*)$d%#taia=pckc=kjra-jntf9ig-#e^v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.209.179']
+ALLOWED_HOSTS = ['192.168.209.182']
 
 
 # Application definition
@@ -123,3 +123,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Auth settings
 LOGIN_REDIRECT_URL = '/'
+
+# media url
+MEDIA_URL = '/files/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')

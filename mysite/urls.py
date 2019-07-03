@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from oroll import views as oroll_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,3 +28,5 @@ urlpatterns = [
     url(r'^accounts/signup$', oroll_views.CreateUserView.as_view(), name = 'signup'),
     url(r'^accounts/signup/done$', oroll_views.RegisteredView.as_view(), name = 'create_user_done'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
