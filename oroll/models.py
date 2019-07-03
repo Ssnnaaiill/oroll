@@ -12,8 +12,9 @@ def user_path(instance, filename):
     return '%s/%s.%s' % (instance.owner.username, pid, extension)
 
 class Photo(models.Model):
+    title = models.CharField(max_length = 200, blank = False, default = '')
     image = models.ImageField(upload_to = user_path)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     thumbnail_image = models.ImageField(blank = True)
-    comment = models.CharField(max_length = 255)
+    comment = models.CharField(max_length = 500)
     pub_date = models.DateTimeField(auto_now_add = True)

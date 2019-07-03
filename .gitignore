@@ -4,4 +4,9 @@ __pycache__
 venv
 db.sqlite3
 /static
+/uploads
+*.png
+*.jpg
+*.gif
+*.bmp
 .DS_Store
