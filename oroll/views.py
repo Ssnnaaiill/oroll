@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 #from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 from .forms import CreateUserForm, UploadForm
 # Create your views here.
 
@@ -23,7 +26,7 @@ def upload(request):
 class IndexView(ListView):
     # model = Photo
     context_object_name = 'user_photo_list'
-    paginate_by = 2
+    paginate_by = 10
     #template_name = 'oroll/index.html'
 
     def get_queryset(self):
@@ -38,3 +41,9 @@ class CreateUserView(CreateView):
 
 class RegisteredView(TemplateView):
     template_name = 'registration/signup_done.html'
+
+
+class ProfileView(DetailView):
+    context_object_name = 'profile_user'
+    model = User
+    template_name = 'oroll/profile.html'

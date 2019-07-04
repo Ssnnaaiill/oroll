@@ -11,10 +11,18 @@ def user_path(instance, filename):
     extension = filename.split('.')[-1]
     return '%s/%s.%s' % (instance.owner.username, pid, extension)
 
+
 class Photo(models.Model):
     title = models.CharField(max_length = 200, blank = False, default = '')
     image = models.ImageField(upload_to = user_path)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     thumbnail_image = models.ImageField(blank = True)
+    url = models.URLField(blank = False, default = '')
     comment = models.CharField(max_length = 500)
     pub_date = models.DateTimeField(auto_now_add = True)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    nickname = models.CharField(max_length = 50)
+    profile_photo = models.ImageField(blank = True)
